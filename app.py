@@ -13,7 +13,7 @@ df = pd.read_csv('phone_nos.csv')
 
 mobile_nos = df.MOBILE.values
     
-for mno in mobile_nos[0:4]:
+for mno in mobile_nos:
     sess = requests.Session()
     sess.mount('https://timeswomensdrive.com/', HTTPAdapter(max_retries=retries, pool_connections=10))
     print('Starting registering for number {}'.format(mno))
@@ -60,6 +60,7 @@ for mno in mobile_nos[0:4]:
             if i%100 == 0:
                 print(mno, i)
                 f.write('{},{}\n'.format(mno,i))
+                f.flush()
     except:
         pass
     finally:
